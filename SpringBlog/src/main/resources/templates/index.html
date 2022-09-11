@@ -1,9 +1,11 @@
-<HTML>
+<!DOCTYPE html>
+<HTML xmlns:th="http://www.thymleaf.org">
 <HEAD>
 <TITLE>A Basic Blog page</TITLE>
 </HEAD>
 <BODY>
-	<H2>Title</H2>
-	<p>content</p>
+	<div th:each="category : ${categoryList}">
+		<h2 th:text="${category.title}"></h2>
+	</div>
 </BODY>
 </HTML>

@@ -2,26 +2,20 @@ package com.example.blog.SpringBlog.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
-
-import com.example.blog.SpringBlog.Entity.User;
-import com.example.blog.SpringBlog.Service.UserService;
+import com.example.blog.SpringBlog.Service.CategoryService;
 
 @Controller
 public class BlogController {
-	@Autowired
-	private UserService service;
 	
-	@ResponseBody
-	@GetMapping("/hello")
-	public User Hello() {
-		return service.getUser(1);
-	}
+	@Autowired
+	private CategoryService catService;
 	
 	@GetMapping("/")
-	public String index() {
+	public String index(Model model) {
+		model.addAttribute("categoryList",this.catService.getAll());
 		return "index";
 	}
+	
 }
