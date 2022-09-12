@@ -1,13 +1,13 @@
 package com.example.blog.SpringBlog.Controller;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import com.example.blog.SpringBlog.Entity.Category;
 import com.example.blog.SpringBlog.Entity.Post;
 import com.example.blog.SpringBlog.Service.CategoryService;
 import com.example.blog.SpringBlog.Service.PostService;
@@ -23,7 +23,8 @@ public class BlogController {
 	
 	@GetMapping("/")
 	public String index(Model model) {
-		model.addAttribute("categoryList",this.catService.getAll());
+		List<Category> categories = catService.getAll();
+		model.addAttribute("categoryList",categories);
 		return "index";
 	}
 	

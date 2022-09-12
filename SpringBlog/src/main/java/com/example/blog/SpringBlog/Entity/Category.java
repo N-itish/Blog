@@ -18,20 +18,12 @@ public class Category {
 	@Column(name = "title")
 	private String title;
 
-	public Category() {}
-	
-	public Category(int categoryId, String title) {
-		super();
-		this.category_id = categoryId;
-		this.title = title;
-	}
-
-	public int getCategoryId() {
+	public int getCategory_id() {
 		return category_id;
 	}
 
-	public void setCategoryId(int categoryId) {
-		this.category_id = categoryId;
+	public void setCategory_id(int category_id) {
+		this.category_id = category_id;
 	}
 
 	public String getTitle() {
@@ -41,6 +33,19 @@ public class Category {
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
+	public Category() {
+		super();
+	}
+
+	public Category(int category_id, String title) {
+		super();
+		this.category_id = category_id;
+		this.title = title;
+	}
+
 	
+
+
 	
 }
