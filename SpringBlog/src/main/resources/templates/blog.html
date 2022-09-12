@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org">
+<head>
+	<title>blog</title>
+</head>
+<div th:each="post : ${posts}">
+	<h1 th:text="${post.title}"></h1>
+	<img th:src="${post.image_url}"/>
+	<p th:text="${post.content}"><p>
+</div>
+</html>

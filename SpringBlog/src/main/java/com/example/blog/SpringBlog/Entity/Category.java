@@ -13,7 +13,7 @@ public class Category {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "category_id")
-	private int categoryId;
+	private int category_id;
 	
 	@Column(name = "title")
 	private String title;
@@ -22,16 +22,16 @@ public class Category {
 	
 	public Category(int categoryId, String title) {
 		super();
-		this.categoryId = categoryId;
+		this.category_id = categoryId;
 		this.title = title;
 	}
 
 	public int getCategoryId() {
-		return categoryId;
+		return category_id;
 	}
 
 	public void setCategoryId(int categoryId) {
-		this.categoryId = categoryId;
+		this.category_id = categoryId;
 	}
 
 	public String getTitle() {
