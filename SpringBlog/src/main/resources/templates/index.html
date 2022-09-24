@@ -2,10 +2,11 @@
 <HTML xmlns:th="http://www.thymleaf.org">
 <HEAD>
 <TITLE>A Basic Blog page</TITLE>
+<link th:href="@{/styles/index.css}" rel="stylesheet">
 </HEAD>
 <BODY>
-	<div th:each="category : ${categoryList}">
-		<h2><a th:text="${category.title}" th:href="@{'/blog/' + ${category.category_id}}"></a></h2>
-	</div>
+	<span th:each="category : ${categoryList}" class="pos">
+		<a th:text="${category.title}" th:href="@{'/blog/' + ${category.category_id}}" class="card no-underline"></a>
+	</span>
 </BODY>
 </HTML>

@@ -1,0 +1,22 @@
+@charset "ISO-8859-1";
+
+.card{
+	background-color: blue;
+	color:white;
+	border:  15px solid darkblue;
+	padding: 40px
+}
+
+.no-underline{
+	text-decoration: none;
+}
+
+
+.pos{
+	display: flex;
+  	justify-content: start;
+  	align-items:justify;
+}
+
+
+

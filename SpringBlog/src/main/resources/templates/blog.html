@@ -2,10 +2,21 @@
 <html xmlns:th="http://www.thymleaf.org">
 <head>
 	<title>blog</title>
+	<link th:href="@{/styles/blog.css}" rel="stylesheet">
 </head>
-<div th:each="post : ${posts}">
+<div id = "posts" th:each="post : ${posts}">
 	<h1 th:text="${post.title}"></h1>
-	<img th:src="${post.image_url}"/>
+	<img class="image-dimension" th:src="${post.image_url}"/>
 	<p th:text="${post.content}"><p>
+</div>
+<!-- Temporarily placing comments here will be moved to next page later -->
+<div id="comments">
+	<div>
+		<h4>Previous Comments:</h4>
+		<div th:each="comment: ${comments}">
+			<p th:text="${comment.comment}"></p>
+		</div>
+	</div>
+</div>
 </div>
 </html>
