@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.blog.SpringBlog.Entity.Category;
 import com.example.blog.SpringBlog.Entity.Comment;
@@ -33,13 +34,27 @@ public class BlogController {
 		return "index";
 	}
 	
-	@GetMapping("/blog/{category_id}")
-	public String blogPost(@PathVariable(value="category_id") int category_id,Model model){
+	@GetMapping("/blogList/{category_id}")
+	public String getBlogListByCategory(@PathVariable(value="category_id") int category_id,Model model){
 		List<Post> posts = postService.getPostUsingCatId(category_id);
-		List<Comment> comments = commentService.getAll();
 		model.addAttribute("posts",posts);
-		model.addAttribute("comments",comments);
+		return "blogList";
+	}
+	
+	@GetMapping("/blog/{post_id}")
+	public String getBlogByPostId(@PathVariable(value="post_id") int post_id, Model model) {
+		Post post = postService.getPostById(post_id);
+		List<Comment> comment = commentService.getCommnetsByPostId(post_id);
+		model.addAttribute("post",post);
+		model.addAttribute("comment",comment);
 		return "blog";
 	}
+	
+	@ResponseBody
+	@GetMapping("/test")
+	public List<Comment> comments(){
+		return commentService.getCommnetsByPostId(1);
+	}
+	
 	
 }

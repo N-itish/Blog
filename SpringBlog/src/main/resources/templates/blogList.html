@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymleaf.org">
+<head>
+	<title>blog</title>
+	<link th:href="@{/styles/blogList.css}" rel="stylesheet">
+</head>
+<body>
+<div id = "posts" th:each="post : ${posts}">
+	<a class = "no-underline" th:href="@{'/blog/' + ${post.post_id}}">
+		<h1 th:text="${post.title}"></h1>
+		<img class="image-dimension" th:src="${post.image_url}"/>
+		<p th:with="contentString =(${post.content}) " th:text = "|${#strings.substring(contentString,0,40)}...|"><p>
+	</a>
+</div>
+</body>
+</html>
