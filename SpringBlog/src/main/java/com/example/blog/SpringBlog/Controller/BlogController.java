@@ -50,11 +50,9 @@ public class BlogController {
 		return "blog";
 	}
 	
-	@ResponseBody
-	@GetMapping("/test")
-	public List<Comment> comments(){
-		return commentService.getCommnetsByPostId(1);
-	}
-	
-	
+
+	@GetMapping("/register")
+	public String signUp() {
+		return "register";
+	}	
 }
