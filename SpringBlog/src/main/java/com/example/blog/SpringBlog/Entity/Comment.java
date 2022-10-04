@@ -1,6 +1,6 @@
 package com.example.blog.SpringBlog.Entity;
 
-import java.util.Set;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -20,9 +19,9 @@ public class Comment {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int comment_id;
 	
-	@OneToMany
+	@ManyToOne
 	@JoinColumn(name = "user_id")
-	private Set<User> user_id;
+	private User user;
 	
 	@ManyToOne
 	@JoinColumn(name = "post_id")
@@ -35,10 +34,11 @@ public class Comment {
 		super();
 	}
 
-	public Comment(int comment_id, Set<User> user_id, Post post, String comment) {
+	
+	public Comment(int comment_id, User user, Post post, String comment) {
 		super();
 		this.comment_id = comment_id;
-		this.user_id = user_id;
+		this.user = user;
 		this.post = post;
 		this.comment = comment;
 	}
@@ -51,12 +51,12 @@ public class Comment {
 		this.comment_id = comment_id;
 	}
 
-	public Set<User> getUser_id() {
-		return user_id;
+	public User getUser() {
+		return user;
 	}
-
-	public void setUser_id(Set<User> user_id) {
-		this.user_id = user_id;
+	
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public Post getPost() {
@@ -74,8 +74,6 @@ public class Comment {
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
-
-	
 	
 	
 

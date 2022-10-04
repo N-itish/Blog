@@ -1,10 +1,15 @@
 package com.example.blog.SpringBlog.Entity;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -13,7 +18,7 @@ public class User {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "user_id")
+	@Column(name = "id")
 	private int id;
 	
 	@Column(name = "name")
@@ -27,6 +32,10 @@ public class User {
 	
 	@Column(name = "about")
 	private String about;
+	
+	@OneToMany
+	@JoinColumn(name = "user_id")
+	private Set<Comment> comments = new HashSet<Comment>();
 	
 	public User() {}
 	
@@ -68,6 +77,12 @@ public class User {
 	}
 	public void setAbout(String about) {
 		this.about = about;
+	}
+	
+	public void addComment(Comment comment) {
+		if(comment != null) {
+			comments.add(comment);
+		}
 	}
 	
 	

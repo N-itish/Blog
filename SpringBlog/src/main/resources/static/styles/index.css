@@ -3,20 +3,29 @@
 .card{
 	background-color: blue;
 	color:white;
-	border:  15px solid darkblue;
-	padding: 40px
+	border:  10px solid darkblue;
+	font-size: 20px;
+	padding: 20px
 }
 
 .no-underline{
 	text-decoration: none;
 }
 
-
-.pos{
-	display: flex;
-  	justify-content: start;
-  	align-items:justify;
+.header{
+	margin-bottom: 40px;
+	height: 200px;
 }
+
+.categories{
+	height: 400px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+
+
 
 
 

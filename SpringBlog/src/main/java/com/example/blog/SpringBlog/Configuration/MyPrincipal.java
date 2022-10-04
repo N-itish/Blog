@@ -15,6 +15,10 @@ public class MyPrincipal implements UserDetails {
     public MyPrincipal(User user){
         this.user = user;
     }
+    
+    public int getId() {
+    	return user.getId();
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

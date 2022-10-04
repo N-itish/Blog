@@ -5,8 +5,11 @@
 <link th:href="@{/styles/index.css}" rel="stylesheet">
 </HEAD>
 <BODY>
-	<span th:each="category : ${categoryList}" class="pos">
-		<a th:text="${category.title}" th:href="@{'/blogList/' + ${category.category_id}}" class="card no-underline"></a>
-	</span>
+	<div class="categories">
+		<h2 class="header">Blog Categories:</h2>
+		<span th:each="category : ${categoryList}">
+			<a th:text="${category.title}" th:href="@{'/blogList/' + ${category.category_id}}" class="card no-underline"></a>
+		</span>
+	</div>
 </BODY>
 </HTML>

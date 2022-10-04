@@ -1,20 +1,33 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymleaf.org">
+<html xmlns:th="http://www.thymleaf.org" 
+xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
 <meta charset="ISO-8859-1">
 <title th:text="${post.title}">Blog Title</title>
 </head>
 <body>
+<div>
+	logged in user: <span sec:authentication="name"></span>
+</div>
 <div id = "blog">
 	<h2 th:text="|${post.title}:|"></h2>
 	<img th:src="${post.image_url}">
 	<p th:text="${post.content}"></p>
 </div>
 
+<div id = "add_comments">
+	<h4>Add Comments:</h4>
+	<form th:action = "@{/addComment}" method="post" th:object="${userComments}">
+		<input type="hidden" name="user_id" th:with = "user_id=${#authentication.getPrincipal().getId()}" th:value = "${user_id}">
+		<input type="hidden" name="post_id" th:with="post_id=${post.post_id}" th:value = "${post_id}">
+		<input type="text" name = "comment" th:field= "*{comment}"><br>
+		<button type="submit">send</button>
+	</form>
+</div>
 <div id = "comments">
 	<h4>Comments:</h4>
 	<div th:each="c : ${comment}">
-		<div th:each="u : ${c.user_id}">
+		<div th:each="u : ${c.user}">
 			<h4 th:text="${u.name}"></h4>	
 		</div>
 		<p th:text="${c.comment}"></p>

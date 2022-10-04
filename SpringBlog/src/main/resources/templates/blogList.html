@@ -5,6 +5,7 @@
 	<link th:href="@{/styles/blogList.css}" rel="stylesheet">
 </head>
 <body>
+
 <div id = "posts" th:each="post : ${posts}">
 	<a class = "no-underline" th:href="@{'/blog/' + ${post.post_id}}">
 		<h1 th:text="${post.title}"></h1>

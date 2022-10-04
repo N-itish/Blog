@@ -1,13 +1,18 @@
 package com.example.blog.SpringBlog.Controller;
 
 import java.util.List;
+
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.PostMapping;
 
+import com.example.blog.SpringBlog.Dto.CommentDTO;
 import com.example.blog.SpringBlog.Entity.Category;
 import com.example.blog.SpringBlog.Entity.Comment;
 import com.example.blog.SpringBlog.Entity.Post;
@@ -46,6 +51,7 @@ public class BlogController {
 		Post post = postService.getPostById(post_id);
 		List<Comment> comment = commentService.getCommnetsByPostId(post_id);
 		model.addAttribute("post",post);
+		model.addAttribute("userComments",new CommentDTO());
 		model.addAttribute("comment",comment);
 		return "blog";
 	}
@@ -55,4 +61,10 @@ public class BlogController {
 	public String signUp() {
 		return "register";
 	}	
+	
+	@PostMapping("/addComment")
+	public String addComment(@ModelAttribute CommentDTO userComments,BindingResult bindingResult, Model model) {
+		commentService.saveComment(userComments);
+		return "redirect:/blog/"+userComments.getPost_id();
+	}
 }
